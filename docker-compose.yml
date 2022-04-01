@@ -1,0 +1,22 @@
+services:
+  nginx:
+    container_name: nginx_service
+    restart: unless-stopped
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./certbot/www:/var/www/certbot/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/:ro 
+
+  # certbot:
+  #   container_name: certbot_service
+  #   restart: unless-stopped
+  #   image: certbot/certbot:latest
+  #   volumes:
+  #     - ./certbot/www/:/var/www/certbot/:rw
+  #     - ./certbot/conf/:/etc/letsencrypt/:rw
+  #   depends_on:
+  #     - nginx
