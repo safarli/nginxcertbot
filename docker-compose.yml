@@ -11,12 +11,12 @@ services:
       - ./certbot/www:/var/www/certbot/:ro
       - ./certbot/conf/:/etc/nginx/ssl/:ro 
 
-  # certbot:
-  #   container_name: certbot_service
-  #   restart: unless-stopped
-  #   image: certbot/certbot:latest
-  #   volumes:
-  #     - ./certbot/www/:/var/www/certbot/:rw
-  #     - ./certbot/conf/:/etc/letsencrypt/:rw
-  #   depends_on:
-  #     - nginx
+  certbot:
+    container_name: certbot_service
+    restart: unless-stopped
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
+    depends_on:
+      - nginx
