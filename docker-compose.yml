@@ -27,5 +27,5 @@ services:
     tty: true
     command: 's3 sync /certbot/ s3://certbot-files'
     volumes:
-      - ./aws:/root/.aws/:ro # AWS Credentials
+      - ./aws:/root/.aws/:ro # AWS Credentials (Mount '.aws/config' & '.aws/credentials' files in container /root/.aws/)
       - ./certbot/:/certbot/:ro # Files to upload to S3
