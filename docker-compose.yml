@@ -18,5 +18,14 @@ services:
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
-    depends_on:
-      - nginx
+
+  aws:
+    container_name: aws-cli_service
+    restart: unless-stopped
+    image: amazon/aws-cli
+    stdin_open: true
+    tty: true
+    command: 's3 sync /certbot/ s3://certbot-files'
+    volumes:
+      - ./aws:/root/.aws/:ro # AWS Credentials
+      - ./certbot/:/certbot/:ro # Files to upload to S3
