@@ -25,6 +25,7 @@ services:
     image: amazon/aws-cli
     stdin_open: true
     tty: true
+    # entrypoint: /bin/bash
     command: 's3 sync /certbot/ s3://certbot-files'
     volumes:
       - ./aws:/root/.aws/:ro # AWS Credentials (Mount '.aws/config' & '.aws/credentials' files in container /root/.aws/)
